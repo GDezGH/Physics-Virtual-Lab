@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f6ef">
+  <meta name="description" content="Phòng thí nghiệm tương tác kiểm chứng định luật đẳng nhiệt Boyle.">
+  <title>Định luật Boyle — Lý Lab</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg class="svg-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.7 9.2a2.5 2.5 0 0 1 4.9.7c0 1.8-2.6 2-2.6 3.9"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3.8 12a8.2 8.2 0 1 0 2.1-5.5L3.8 8.7"/><path d="M3.8 4.1v4.6h4.6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11m-4-4 4 4 4-4"/><path d="M5 16.5v3h14v-3"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9 7V4.5h6V7m-8.5 0 .8 12h9.4l.8-12M10 10.5v5.5m4-5.5v5.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="6" y="10" width="12" height="10" rx="2"/><path d="M9 10V7a3 3 0 1 1 6 0v3m-3 7v-3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Lý Lab — về đầu trang">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none"><path d="M8 23.5h20M12 23.5V13a6 6 0 0 1 12 0v10.5M9 27h18M16 8h4M18 5v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="15.5" cy="17" r="1.2" fill="currentColor"/><circle cx="20.5" cy="14.5" r="1.2" fill="currentColor"/><circle cx="20" cy="20" r="1.2" fill="currentColor"/></svg>
+        </span>
+        <span class="brand-name"><strong>fake_PhET<span>.</span>lab</strong><small>PHÒNG THÍ NGHIỆM SỐ</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Điều hướng trang">
+        <a class="nav-link active" href="#thi-nghiem">Thí nghiệm</a>
+        <a class="nav-link" href="#ket-qua">Dữ liệu &amp; đồ thị</a>
+      </nav>
+      <div class="top-actions">
+        <div class="subject-tag"><span class="subject-dot"></span><span>CHỦ ĐỀ <b>NHIỆT HỌC</b></span></div>
+        <span class="top-divider"></span>
+        <button class="help-link" id="openGuide" type="button"><svg class="icon"><use href="#i-help"/></svg><span>Hướng dẫn</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page" id="top">
+    <section class="intro" aria-labelledby="pageTitle">
+      <div class="intro-copy">
+        <div class="eyebrow"><span>PHÒNG THÍ NGHIỆM</span><span class="eyebrow-line"></span><span>01 / NHIỆT HỌC</span></div>
+        <h1 id="pageTitle">Định luật <em>Boyle</em><span class="title-dot">.</span></h1>
+        <p>Thay đổi thể tích, quan sát áp suất và tự mình khám phá quy luật của chất khí.</p>
+      </div>
+      <div class="intro-aside">
+        <div class="formula-mark" aria-hidden="true"><span>p</span><span>V</span></div>
+        <div class="formula-copy"><span>QUÁ TRÌNH ĐẲNG NHIỆT</span><strong>P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></strong><small>Nhiệt độ được giữ không đổi</small></div>
+      </div>
+    </section>
+
+    <section class="workspace-grid" id="thi-nghiem" aria-label="Thí nghiệm và điều khiển">
+      <article class="panel simulation-panel">
+        <div class="panel-heading sim-heading">
+          <div class="heading-group">
+            <span class="section-number">01</span>
+            <div><span class="panel-kicker">KHÔNG GIAN THỰC HÀNH</span><h2>Buồng thí nghiệm</h2></div>
+          </div>
+          <div class="sim-status"><span class="live-dot"></span><span id="motionStatus">HẠT ĐANG CHUYỂN ĐỘNG</span><button class="pause-button" id="toggleMotion" type="button" aria-label="Tạm dừng chuyển động của các hạt" title="Tạm dừng chuyển động của các hạt"><span id="motionIcon" aria-hidden="true">Ⅱ</span></button></div>
+        </div>
+        <div class="simulation-stage">
+          <div class="stage-temperature">
+            <span class="micro-label">NHIỆT ĐỘ <svg class="mini-icon"><use href="#i-lock"/></svg></span>
+            <strong>300 <span>K</span></strong>
+            <small><span class="tiny-green-dot"></span> Được giữ cố định</small>
+          </div>
+          <div class="stage-hint"><span class="drag-icon" aria-hidden="true">↕</span><span><strong>Kéo pít-tông</strong><small>để nén hoặc giãn khí</small></span></div>
+          <div class="stage-note"><span>HỆ KHÍ LÝ TƯỞNG</span><strong>n ≈ 0,0000812 mol</strong><small>Mô hình hạt minh họa</small></div>
+          <div class="stage-corner" aria-hidden="true">BOYLE / 01</div>
+
+          <svg id="apparatus" class="apparatus" viewBox="0 0 800 325" preserveAspectRatio="xMidYMid meet" aria-label="Mô phỏng một pít-tông chứa khí, có vạch thể tích và đồng hồ đo áp suất">
+            <defs>
+              <linearGradient id="glassGradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d0e1d7"/><stop offset="0.16" stop-color="#f9fcf7"/><stop offset="0.65" stop-color="#eef6ef"/><stop offset="1" stop-color="#c8dcd0"/></linearGradient>
+              <linearGradient id="gasGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2e7ce"/><stop offset="1" stop-color="#9ed6b9"/></linearGradient>
+              <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#71877d"/><stop offset="0.25" stop-color="#e4ebe1"/><stop offset="0.65" stop-color="#c9d7cb"/><stop offset="1" stop-color="#748d7f"/></linearGradient>
+              <linearGradient id="pistonGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#82998b"/><stop offset="0.43" stop-color="#526e60"/><stop offset="0.6" stop-color="#304f42"/><stop offset="1" stop-color="#6a8677"/></linearGradient>
+              <radialGradient id="dialGradient"><stop offset="0" stop-color="#fffef8"/><stop offset="1" stop-color="#e9eee4"/></radialGradient>
+              <clipPath id="gasClip"><rect id="gasClipRect" x="295" y="211.5" width="158" height="76.5"/></clipPath>
+            </defs>
+            <!-- Ground and a connecting tube behind the instruments. -->
+            <ellipse cx="405" cy="304" rx="220" ry="9" fill="#829e8c" opacity=".14"/>
+            <path d="M454 268 H567 Q584 268 584 252 V238" fill="none" stroke="#527064" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M454 268 H567 Q584 268 584 252 V238" fill="none" stroke="#c1d0c1" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+            <rect x="454" y="260" width="11" height="17" rx="3" fill="#426455"/>
+
+            <!-- Đường nối áp kế chữ U tới buồng khí. -->
+            <path d="M205 187 H190 V270 H286" fill="none" stroke="#678d7a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M205 187 H190 V270 H286" fill="none" stroke="#c6dacb" stroke-width="2" stroke-linecap="round"/>
+            <!-- Thang thể tích. -->
+            <text x="219" y="145" class="svg-scale-heading">V / mL</text>
+            <line x1="270" y1="158" x2="270" y2="289" stroke="#9aad9e" stroke-width="1"/>
+            <g id="volumeScale" class="svg-scale" fill="#6c8174" stroke="#8da597" stroke-width="1"></g>
+            <path id="scalePointer" d="M 272 211.5 l 9 -5 v 10 z" fill="#1f6a54"/>
+
+            <!-- Bể điều nhiệt bao quanh xi-lanh: minh họa giữ nhiệt độ không đổi. -->
+            <rect x="276" y="146" width="198" height="145" rx="12" fill="#99cfc4" fill-opacity=".33" stroke="#8dbcb0" stroke-width="1.5"/>
+            <path d="M278 152 Q290 148 302 152 T326 152 T350 152 T374 152 T398 152 T422 152 T446 152 T472 152" fill="none" stroke="#8abfb1" stroke-width="1.4"/>
+            <text x="284" y="283" fill="#648c80" font-size="8">BỂ ĐIỀU NHIỆT</text>
+            <g aria-label="Nhiệt kế bể điều nhiệt"><rect x="467" y="166" width="8" height="56" rx="4" fill="#f8faf4" stroke="#79988a"/><rect x="469.5" y="185" width="3" height="37" rx="1.5" fill="#d47958"/><circle cx="471" cy="224" r="5" fill="#d47958" stroke="#79988a"/></g>
+            <!-- Cylinder, gas, and moving molecules. -->
+            <rect x="286" y="137" width="176" height="156" rx="9" fill="url(#glassGradient)" stroke="#698b79" stroke-width="2"/>
+            <rect x="295" y="146" width="158" height="142" fill="#f5faf4" opacity=".8"/>
+            <rect id="gasFill" x="295" y="211.5" width="158" height="76.5" fill="url(#gasGradient)"/>
+            <g id="particles" clip-path="url(#gasClip)"></g>
+            <rect x="295" y="146" width="158" height="142" fill="none" stroke="#9bb7a5" stroke-width="1"/>
+            <rect x="290" y="147" width="5" height="141" fill="#d9e9dc" opacity=".8"/>
+            <rect x="453" y="147" width="5" height="141" fill="#b1cbb8" opacity=".8"/>
+            <path d="M302 151v131" stroke="#fff" opacity=".55" stroke-width="3"/>
+            <rect x="279" y="137" width="190" height="10" rx="4" fill="url(#metalGradient)" stroke="#6a8676" stroke-width="1.2"/>
+            <rect x="284" y="286" width="180" height="11" rx="3" fill="url(#pistonGradient)" stroke="#557567"/>
+            <rect x="271" y="296" width="206" height="9" rx="4.5" fill="#4b695a"/>
+            <rect x="281" y="296" width="186" height="3" rx="1.5" fill="#9fb6a5" opacity=".85"/>
+            <circle cx="288" cy="300.5" r="1.5" fill="#cedbd0"/><circle cx="460" cy="300.5" r="1.5" fill="#cedbd0"/>
+
+            <!-- Piston is moved by dragging the handle, rod, or head. -->
+            <g id="piston" class="piston" transform="translate(0 198.5)" role="slider" tabindex="0" aria-label="Pít-tông điều chỉnh thể tích khí" aria-valuemin="4" aria-valuemax="30" aria-valuenow="20" aria-valuetext="20,0 mL. Dùng phím mũi tên lên hoặc xuống để thay đổi.">
+              <rect x="368" y="-133" width="12" height="135" rx="2" fill="url(#metalGradient)" stroke="#6d8879" stroke-width="1"/>
+              <path d="M372 -129v125" stroke="#f4faf3" stroke-width="2" opacity=".7"/>
+              <rect x="293" y="0" width="162" height="13" rx="3" fill="url(#pistonGradient)" stroke="#385a49" stroke-width="1"/>
+              <path d="M300 3h148" stroke="#b0c8b5" opacity=".8"/>
+              <path d="M300 10h148" stroke="#294b3a" opacity=".65"/>
+              <rect x="343" y="-144" width="62" height="13" rx="6.5" fill="#264f3e"/>
+              <rect x="348" y="-142" width="52" height="3" rx="1.5" fill="#719682" opacity=".8"/>
+              <path d="M362-141v6m6-6v6m6-6v6m6-6v6m6-6v6" stroke="#b6d1bb" stroke-width=".8" opacity=".7"/>
+              <rect class="drag-target" x="330" y="-154" width="88" height="33" fill="transparent"/>
+              <rect class="drag-target" x="356" y="-130" width="36" height="130" fill="transparent"/>
+              <rect class="drag-target" x="290" y="-3" width="168" height="20" fill="transparent"/>
+            </g>
+
+            <!-- Áp kế chữ U: chiều cao chỉ minh họa, số đọc là chênh áp quy đổi mmHg. -->
+            <g aria-label="Ống áp kế chữ U minh họa chênh áp">
+              <text x="205" y="181" text-anchor="middle" fill="#6b8575" font-size="8">khí</text><text x="245" y="181" text-anchor="middle" fill="#6b8575" font-size="8">p₀</text>
+              <path d="M205 187 V250 Q205 264 225 264 Q245 264 245 250 V187" fill="none" stroke="#8fae9f" stroke-width="11" stroke-linecap="round"/>
+              <path d="M205 187 V250 Q205 264 225 264 Q245 264 245 250 V187" fill="none" stroke="#f5faf3" stroke-width="7" stroke-linecap="round"/>
+              <path d="M205 241 V250 Q205 264 225 264 Q245 264 245 250 V241" fill="none" stroke="#67ab94" stroke-width="5"/>
+              <line id="uLeft" x1="205" y1="218" x2="205" y2="250" stroke="#67ab94" stroke-width="5"/><line id="uRight" x1="245" y1="218" x2="245" y2="250" stroke="#67ab94" stroke-width="5"/>
+              <text id="uLabel" x="225" y="281" text-anchor="middle" fill="#6b8575" font-size="8">Δh = 0 mmHg</text><text x="225" y="292" text-anchor="middle" fill="#82998b" font-size="7">mực chất lỏng minh họa</text>
+            </g>
+            <!-- Analog absolute-pressure gauge. -->
+            <rect x="573" y="231" width="22" height="15" rx="3" fill="#617d6b"/>
+            <circle cx="584" cy="187" r="55" fill="#476b59"/>
+            <circle cx="584" cy="187" r="50" fill="#d3e0d1" stroke="#86a28e" stroke-width="1"/>
+            <circle cx="584" cy="187" r="45" fill="url(#dialGradient)" stroke="#9ab3a1" stroke-width="1"/>
+            <g id="gaugeTicks"></g>
+            <text x="584" y="172" class="dial-unit">kPa</text>
+            <text id="gaugeValue" x="584" y="214" class="dial-value">1,67</text>
+            <g id="gaugeNeedle"><path d="M580 189 L584 151 L588 189 Z" fill="#d47958"/><circle cx="584" cy="187" r="5" fill="#315a46"/><circle cx="584" cy="187" r="2" fill="#dce8dc"/></g>
+            <text x="584" y="258" class="gauge-caption">ÁP SUẤT / kPa</text>
+          </svg>
+        </div>
+      </article>
+
+      <aside class="panel control-panel" aria-labelledby="controlTitle">
+        <div class="panel-heading control-heading">
+          <div><span class="panel-kicker">BẢNG ĐIỀU KHIỂN</span><h2 id="controlTitle">Thông số thí nghiệm</h2></div>
+          <button class="reset-control" id="resetPiston" type="button" title="Đưa thể tích về 20,0 mL, giữ nguyên bảng số liệu"><svg class="icon"><use href="#i-reset"/></svg><span>Đặt lại</span></button>
+        </div>
+        <div class="control-content">
+          <div class="readouts" aria-live="polite" aria-atomic="true">
+            <div class="readout volume-readout"><div class="readout-label"><span class="readout-letter">V</span><span>THỂ TÍCH</span></div><div class="readout-value"><strong id="volumeValue">20,0</strong><span>mL</span></div></div>
+            <div class="readout pressure-readout"><div class="readout-label"><span class="readout-letter">P</span><span>ÁP SUẤT</span></div><div class="readout-value"><strong id="pressureValue">101,3</strong><span>kPa</span></div></div>
+          </div>
+          <div class="adjustment">
+            <div class="adjustment-heading"><label for="volumeSlider">Điều chỉnh thể tích</label><span id="sliderValue">20,0 mL</span></div>
+            <div class="slider-row">
+              <button id="decreaseVolume" class="step-button" type="button" aria-label="Giảm thể tích 1 mL">−</button>
+              <input id="volumeSlider" type="range" min="4" max="30" step="0.1" value="20" aria-label="Thể tích khí, tính bằng mL">
+              <button id="increaseVolume" class="step-button" type="button" aria-label="Tăng thể tích 1 mL">+</button>
+            </div>
+            <div class="slider-limits"><span>4,0 mL</span><span>KÉO ĐỂ ĐIỀU CHỈNH</span><span>30,0 mL</span></div>
+          </div>
+          <div class="constants-row">
+            <div class="constant-item"><svg class="icon"><use href="#i-lock"/></svg><span>Nhiệt độ <strong>300 K</strong></span></div>
+            <div class="constant-item pv-constant"><span>P · V</span><strong>2026 <small>kPa·mL</small></strong></div>
+          </div>
+          <div class="force-readout"><span>LỰC TAY GIỮ PÍT-TÔNG <small>· tiết diện 2,0 cm²</small></span><strong id="forceValue">≈ 0 N</strong></div>
+          <button class="record-button" id="recordButton" type="button"><span class="record-plus" aria-hidden="true">+</span><span class="record-copy"><strong>Ghi nhận số liệu</strong><small>Thêm trạng thái hiện tại vào bảng</small></span><svg class="icon record-arrow"><use href="#i-arrow"/></svg></button>
+          <button id="demoButton" class="demo-button" type="button">▶ &nbsp; Chạy mẫu <span>· đo tự động 5 điểm</span></button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="results-section" id="ket-qua" aria-labelledby="resultsTitle">
+      <div class="results-heading">
+        <div class="heading-group"><span class="section-number dark-number">02</span><div><span class="panel-kicker">QUAN SÁT &amp; PHÂN TÍCH</span><h2 id="resultsTitle">Kết quả thí nghiệm</h2></div></div>
+        <div class="results-count"><span class="count-dot"></span><strong id="resultCount">00</strong><span>điểm dữ liệu</span></div>
+      </div>
+      <div class="results-grid">
+        <article class="panel data-panel" aria-labelledby="dataTitle">
+          <div class="results-card-head">
+            <div><h3 id="dataTitle">Bảng số liệu</h3><p id="tableDescription">Sẵn sàng cho lần đo đầu tiên</p></div>
+            <div class="table-actions">
+              <button class="icon-action" id="clearData" type="button" title="Xóa tất cả số liệu" aria-label="Xóa tất cả số liệu"><svg class="icon"><use href="#i-trash"/></svg></button>
+              <button class="export-button" id="exportData" type="button"><svg class="icon"><use href="#i-download"/></svg><span>Xuất CSV</span></button>
+            </div>
+          </div>
+          <div class="data-tools"><label class="noise-label"><input id="noiseToggle" type="checkbox"> Nhiễu đo ±0,6%</label><button id="sortButton" type="button">↕ Sắp xếp V</button><button id="removeLast" type="button">↶ Xóa lần cuối</button></div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>LẦN ĐO</th><th>V <span>(mL)</span></th><th>P <span>(kPa)</span></th><th>1/V <span>(mL⁻¹)</span></th><th>P · V <span>(kPa·mL)</span></th><th>Δ <span>(%)</span></th><th><span class="sr-only">Xóa hàng</span></th></tr></thead>
+              <tbody id="measurementRows"></tbody>
+            </table>
+            <div class="empty-table" id="emptyTable" hidden><div class="empty-icon">＋</div><strong>Chưa có số liệu nào</strong><span>Điều chỉnh thể tích rồi chọn “Ghi nhận số liệu”.</span></div>
+          </div>
+          <div class="data-footnote"><span class="footnote-icon">i</span><span>Δ là độ lệch P · V so với trung bình; số liệu được làm tròn.</span></div>
+        </article>
+
+        <article class="panel chart-panel" aria-labelledby="chartTitle">
+          <div class="results-card-head chart-header">
+            <div><h3 id="chartTitle">Đồ thị tương quan</h3><p id="chartSubtitle">Áp suất theo thể tích</p></div>
+            <div class="chart-tabs" role="group" aria-label="Chọn dạng đồ thị">
+              <button class="chart-tab active" type="button" data-mode="pv" aria-pressed="true">P – V</button>
+              <button class="chart-tab" type="button" data-mode="pinv" aria-pressed="false">P – 1/V</button>
+            </div>
+          </div>
+          <div class="chart-wrap"><svg id="chart" viewBox="0 0 600 220" role="img" aria-label="Đồ thị áp suất theo thể tích"></svg></div>
+          <div class="chart-legend"><span><i class="legend-line"></i> Khớp số liệu / lý thuyết</span><span><i class="legend-dot"></i> Số liệu</span><span><i class="legend-live"></i> Hiện tại</span></div>
+        </article>
+      </div>
+      <article class="verification panel"><div class="verify-head"><div><span class="panel-kicker">PHÂN TÍCH DỮ LIỆU</span><h3>Kiểm chứng định luật</h3></div><span class="verify-tag">P · V = CONST</span></div>
+        <div class="verify-grid"><div><span>SỐ ĐIỂM ĐO</span><strong id="statCount">0</strong></div><div><span>P · V TRUNG BÌNH</span><strong id="statK">—</strong><small>kPa·mL</small></div><div><span>ĐỘ LỆCH LỚN NHẤT</span><strong id="statDev">—</strong></div><div><span>R² TUYẾN TÍNH HÓA</span><strong id="statR2">—</strong></div></div>
+        <p class="verdict" id="verdict">Cần ít nhất 3 điểm đo ở các thể tích khác nhau để đánh giá. Hãy thử “Chạy mẫu”.</p>
+        <p class="verify-note" id="fitEquation">Đường lý thuyết: P = 2026 / V</p><p class="model-note">Mô phỏng tính áp suất theo định luật Boyle; kết quả kiểm chứng mô hình, không thay thế phép đo thực nghiệm.</p>
+      </article>
+      <div class="takeaway"><div class="takeaway-icon" aria-hidden="true">↗</div><div><span>ĐIỀU CẦN NHỚ</span><p>Ở nhiệt độ không đổi, áp suất tỉ lệ nghịch với thể tích của một lượng khí xác định.</p></div><strong>P ∝ 1/V</strong></div>
+    </section>
+
+    <footer class="footer"><span><b>lý.lab</b> / PHÒNG THÍ NGHIỆM SỐ</span><span>HỌC BẰNG CÁCH KHÁM PHÁ <span class="footer-star">✳</span></span></footer>
+  </main>
+
+  <dialog class="guide-dialog" id="guideDialog" aria-labelledby="guideTitle">
+    <div class="guide-inner">
+      <div class="guide-top"><span>HƯỚNG DẪN / THÍ NGHIỆM 01</span><button id="closeGuide" class="close-dialog" type="button" aria-label="Đóng hướng dẫn"><svg class="icon"><use href="#i-close"/></svg></button></div>
+      <h2 id="guideTitle">Cùng khám phá <em>Boyle.</em></h2>
+      <p class="guide-lead">Giữ nhiệt độ và lượng khí không đổi, sau đó quan sát điều gì xảy ra khi thể tích thay đổi.</p>
+      <div class="guide-steps">
+        <div><span>01</span><p><strong>Điều chỉnh thể tích</strong>Kéo tay cầm pít-tông, dùng thanh trượt hoặc nút + / −.</p></div>
+        <div><span>02</span><p><strong>Ghi lại kết quả</strong>Đọc áp suất và nhấn “Ghi nhận số liệu” ở mỗi trạng thái.</p></div>
+        <div><span>03</span><p><strong>Tìm quy luật</strong>So sánh tích P · V; chuyển sang đồ thị P – 1/V để thấy quan hệ tuyến tính.</p></div>
+      </div>
+      <div class="guide-formula"><div><span>ĐỊNH LUẬT BOYLE</span><strong>P₁V₁ = P₂V₂</strong></div><p>Khi T và lượng khí không đổi, P tỉ lệ nghịch với V.</p></div>
+      <p class="guide-note">Mô hình khí lý tưởng: T = 300 K, P₀ = 101,3 kPa tại V₀ = 20 mL, P · V = 2026 kPa·mL. P là áp suất tuyệt đối. Bể điều nhiệt, chuyển động hạt và ống chữ U là minh họa; độ cao cột chất lỏng không theo tỉ lệ, Δh quy đổi theo mmHg. Áp suất được tính sẵn theo định luật Boyle, vì vậy kết quả là kiểm chứng trong mô hình, không phải bằng chứng thực nghiệm độc lập. Có thể thêm nhiễu khi ghi đo, chạy mẫu 5 điểm, và nhấn G để ghi nhanh.</p>
+      <button class="guide-start" id="startGuide" type="button">Bắt đầu khám phá <svg class="icon"><use href="#i-arrow"/></svg></button>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastText"></span><button id="undoButton" type="button" hidden>Hoàn tác</button></div>
+  <script src="app.js"></script>
+</body>
+</html>
